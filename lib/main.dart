@@ -19,28 +19,28 @@ class _MyAppState extends State<MyApp> {
     {
       'questionText': 'What\'s your favourite color?',
       'answer': [
-        {'text': 'Red', 'score': 8},
-        {'text': 'Green', 'score': 10},
-        {'text': 'Blue', 'score': 6},
-        {'text': 'Black', 'score': 9},
+        {'text': 'Red', 'score': 2},
+        {'text': 'Green', 'score': 5},
+        {'text': 'Blue', 'score': 4},
+        {'text': 'Black', 'score': 3},
       ]
     },
     {
       'questionText': 'What\'s your favourite animal?',
       'answer': [
-        {'text': 'Cat', 'score': 8},
-        {'text': 'Dog', 'score': 9},
-        {'text': 'Rabbit', 'score': 6},
+        {'text': 'Cat', 'score': 3},
+        {'text': 'Dog', 'score': 5},
+        {'text': 'Rabbit', 'score': 2},
         {'text': 'Pigeon', 'score': 4},
       ]
     },
     {
       'questionText': 'Who is your favourite athlete?',
       'answer': [
-        {'text': 'Ronaldo', 'score': 10},
-        {'text': 'Messi', 'score': 10},
-        {'text': 'Pele', 'score': 8},
-        {'text': 'Bolt', 'score': 9},
+        {'text': 'Ronaldo', 'score': 4},
+        {'text': 'Messi', 'score': 4},
+        {'text': 'Pele', 'score': 1},
+        {'text': 'Bolt', 'score': 5},
       ]
     },
   ];
@@ -50,6 +50,13 @@ class _MyAppState extends State<MyApp> {
     setState(() {
       _questionIndex = _questionIndex + 1;
       print(_questionIndex);
+    });
+  }
+
+  void _resetQuiz(){
+    setState(() {
+      _questionIndex = 0;
+      _totalScore = 0;
     });
   }
 
@@ -71,7 +78,7 @@ class _MyAppState extends State<MyApp> {
                 questionIndex: _questionIndex,
                 questions: _questions,
               )
-            : Result(_totalScore),
+            : Result(resultScore: _totalScore, resetHandler: _resetQuiz),
       ),
     );
   }
