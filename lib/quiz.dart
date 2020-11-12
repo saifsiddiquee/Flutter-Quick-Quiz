@@ -4,7 +4,10 @@ import 'answer.dart';
 import 'questions.dart';
 
 class Quiz extends StatelessWidget {
-  Quiz({@required this.answerQuestion, @required this.questions, @required this.questionIndex});
+  Quiz(
+      {@required this.answerQuestion,
+      @required this.questions,
+      @required this.questionIndex});
 
   final List<Map<String, Object>> questions;
   final int questionIndex;
@@ -17,9 +20,9 @@ class Quiz extends StatelessWidget {
         Question(
           questionText: questions[questionIndex]['questionText'],
         ),
-        ...(questions[questionIndex]['answer'] as List<String>)
+        ...(questions[questionIndex]['answer'] as List<Map<String, Object>>)
             .map((ans) {
-          return Answer(answerQuestion, ans);
+          return Answer(() => answerQuestion(ans['score']), ans['text']);
         }).toList()
       ],
     );
